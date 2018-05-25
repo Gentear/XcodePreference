@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>CLSharedInstance</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>+ (nonnull instancetype)shared&lt;#ImageCache#&gt; {
+    static dispatch_once_t once;
+    static id instance;
+    dispatch_once(&amp;once, ^{
+        instance = [self new];
+    });
+    return instance;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>550B6A24-849C-4D1E-A95D-D2E60D9118A4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CLSharedInstance</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CLSharedInstance</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

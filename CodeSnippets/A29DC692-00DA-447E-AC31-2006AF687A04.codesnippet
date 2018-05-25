@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>CLGod</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//                          _oo8oo_
+//                         o8888888o
+//                         88" . "88
+//                         (| -_- |)
+//                         0\  =  /0
+//                       ___/'==='\___
+//                     .' \\|     |// '.
+//                    / \\|||  :  |||// \
+//                   / _||||| -:- |||||_ \
+//                  |   | \\\  -  /// |   |
+//                  | \_|  ''\---/''  |_/ |
+//                  \  .-\__  '-'  __/-.  /
+//                ___'. .'  /--.--\  '. .'___
+//             ."" '&lt;  '.___\_&lt;|&gt;_/___.'  &gt;' "".
+//            | | :  `- \`.:`\ _ /`:.`/ -`  : | |
+//            \  \ `-.   \_ __\ /__ _/   .-` /  /
+//        =====`-.____`.___ \_____/ ___.`____.-`=====
+//                          `=---=`
+//
+//                  佛祖保佑            永无bug</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A29DC692-00DA-447E-AC31-2006AF687A04</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>God</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>God</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>CLDefine</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import &lt;UIKit/UIKit.h&gt;
+/**
+ *  屏幕
+ */
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kScreenBounds [UIScreen mainScreen].bounds
+#define iPhoneX (kScreenWidth == 375.f &amp;&amp; kScreenHeight == 812.f ? YES : NO)
+#define kBarHeight      (iPhoneX ? 44.f : 20.f)
+#define kTBHeight         (iPhoneX ? (49.f+34.f) : 49.f)
+#define kTBSafeBottomMargin         (iPhoneX ? 34.f : 0.f)
+#define kNVHeight  (iPhoneX ? 88.f : 64.f)
+#define kDesignSketchWidth 375.00
+#define kDesignSketchHeight 668.00
+#define kRatioWidth(width) ((width * kScreenWidth)/kDesignSketchWidth)
+#define kRatioHeight(height) ((height * kScreenHeight)/kDesignSketchHeight)
+
+
+#ifdef DEBUG
+//__VA_ARGS__代表可变参数宏
+#define NSLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])//NSLog(format, ##__VA_ARGS__)
+#else
+#define NSLog(format, ...)
+#endif
+
+/**
+ *  颜色
+ */
+#define kRGB(r, g, b)                        [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
+#define kRGBA(r, g, b, a)                    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define kRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:1.0]
+#define kColorWithHex(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue &amp; 0xFF0000) &gt;&gt; 16)) / 255.0f \
+green:((float)((rgbValue &amp; 0xFF00) &gt;&gt; 8)) / 255.0f \
+blue:((float)(rgbValue &amp; 0xFF)) / 255.0f alpha:1.0]
+
+/**
+ *  主题颜色
+ */
+#define kThemeColors  kRGBA(5.0f, 191.0f, 188.0f, 1.0f)
+#define kWhiteColors  [UIColor whiteColor]
+#define kMiddlegrayColors kColorWithHex(666666)
+
+/**
+ *  系统信息
+ */
+#define kCurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
+#define kSystemVersion [[UIDevice currentDevice] systemVersion]
+/** 是否为某版本 */
+#define isiOS(a) (([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= a) ? YES : NO)
+/**
+ *  是否是X
+ */
+#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+/**
+ *  路径
+ */
+#define kPathTemp NSTemporaryDirectory()
+#define kPathDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+#define kPathCache [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+
+
+/**
+ *  字符串是否为空
+ */
+#define kStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] &lt; 1 ? YES : NO )
+
+#define kArrayIsEmpty(array) (array == nil || [array isKindOfClass:[NSNull class]] || array.count == 0)
+
+#define kDictIsEmpty(dic) (dic == nil || [dic isKindOfClass:[NSNull class]] || dic.allKeys == 0)
+
+#define kObjectIsEmpty(_object) (_object == nil \
+|| [_object isKindOfClass:[NSNull class]] \
+|| ([_object respondsToSelector:@selector(length)] &amp;&amp; [(NSData *)_object length] == 0) \
+|| ([_object respondsToSelector:@selector(count)] &amp;&amp; [(NSArray *)_object count] == 0))
+
+
+/**
+ *  url
+ */
+#ifdef DEBUG
+//__VA_ARGS__代表可变参数宏
+#define URL_HOST  @"http://112.126.65.188:2070/"
+#else
+#define URL_HOST  @"http://test.yeesight.com/"
+#endif
+
+
+/**
+ *  系统单例类
+ */
+#define kNotificationCenter [NSNotificationCenter defaultCenter]
+#define kApplication [UIApplication sharedApplication]
+#define kDevice [UIDevice currentDevice]
+#define kKeyWindow [UIApplication sharedApplication].keyWindow
+#define kAppDelegate [UIApplication sharedApplication].delegate
+#define kUserDefaults [NSUserDefaults standardUserDefaults]
+
+#import &lt;CommonCrypto/CommonDigest.h&gt;
+/*
+ *  字典转成json
+ */
+CG_INLINE NSString *JsonStringFromDictionary(NSDictionary *dic){
+    if (dic == nil) {
+        return nil;
+    }
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;error];
+    if (error) {
+        NSLog(@"字典转换失败 : %@", error);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+/*
+ *  字典转成DATA
+ */
+CG_INLINE NSData *JsonDataFromDictionary(NSDictionary *dic){
+    if (dic == nil) {
+        return nil;
+    }
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;error];
+    if (error) {
+        NSLog(@"字典转换失败 : %@", error);
+        return nil;
+    }
+    return jsonData;
+}
+/*
+ *  json转字典
+ */
+CG_INLINE NSDictionary *DictionaryFromJsonString(NSString *jsonString){
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&amp;error];
+    if (error) {
+        NSLog(@"json解析失败 : %@", error);
+        return nil;
+    }
+    return dic;
+}
+/*
+ *  data转字典
+ */
+CG_INLINE NSDictionary *DataFromJsonString(NSData *jsonData){
+    if (jsonData == nil) {
+        return nil;
+    }
+    NSError *error;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&amp;error];
+    if (error) {
+        NSLog(@"json解析失败 : %@", error);
+        return nil;
+    }
+    return dic;
+}
+/**
+ *  MD5加密
+ */
+CG_INLINE NSString *stringMD5(NSString *string){
+    NSString * postMd5 = nil;
+    if ([string length] != 0) {
+        const char *cPostData = [string UTF8String];
+        unsigned char result[16];
+        CC_MD5( cPostData, (unsigned int)strlen(cPostData), result);
+        postMd5 = [NSString stringWithFormat:
+                   @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                   result[0], result[1], result[2], result[3],
+                   result[4], result[5], result[6], result[7],
+                   result[8], result[9], result[10], result[11],
+                   result[12], result[13], result[14], result[15]];
+        
+    }
+    return postMd5;
+}
+
+
+
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5E646A1F-C81E-45F9-9FD1-79B6DE30E846</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>CLDefine</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>CLDefine</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
